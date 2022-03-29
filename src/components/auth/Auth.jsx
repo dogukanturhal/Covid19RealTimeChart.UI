@@ -1,11 +1,16 @@
 import React, { useContext } from "react"
 import { AuthContext } from "../../context/auth-context"
 import Card from "../UI/Card/Card"
+
+/**
+ * Bu bölümde React.Fragment kullanarak fazladan html tag kullanımının önüne geçtim ( örnek : <div> .... </div>)
+ * Card componenti tanımlayarak Reactin asıl amacı olan componentlere ayrımı göstermek istedim.
+ * İçerisinde bulunan button'a tıklanıldığında authcontext içerisinde ki isAuth durumunu değiştirmektedir ve bu sayede kullanıcıyı authenticate etmiş gibi dashboard componentine yönlendirir.
+ */
 const Auth = (props) => {
   const authContext = useContext(AuthContext)
 
   const loginHandler = () => {
-    console.log("Work")
     authContext.login()
   }
   return (

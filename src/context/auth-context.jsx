@@ -1,5 +1,12 @@
 import React, { useState } from "react"
 
+/*
+
+  Bu bölümde AuthContext içerisinde state yönetimi gerçekleştirdim.
+  loginHandler tetiklendiğinde isAuth true olarak değişmekte ve kullanıcı authenticate olmaktadır.
+  AuthContext.Provider'ın içerisinde props.children kullanarak alt componentlerinde içerisinde olan verileri render edebilmektedir.
+*/
+
 export const AuthContext = React.createContext({
   isAuth: false,
   login: () => {},
