@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react"
+import React, { useEffect, useState, useMemo, useCallback } from "react"
 import { Chart } from "react-google-charts"
 import { HubConnectionBuilder } from "@microsoft/signalr"
 import { Covid } from "../../models/CovidModel"
@@ -15,6 +15,7 @@ import { Covid } from "../../models/CovidModel"
 const DashBoard = (props) => {
   const [connection, setConnection] = useState(null)
   const covidChartList = []
+
   const [covidCharts, setCovids] = useState<any[]>([])
   const columnNames = [
     "Tarih",
@@ -31,7 +32,7 @@ const DashBoard = (props) => {
       .build()
 
     setConnection(newConnection)
-  }, [])
+  }, [connection])
   useEffect(() => {
     if (connection) {
       connection
@@ -50,15 +51,15 @@ const DashBoard = (props) => {
                 item.counts[3],
                 item.counts[4],
               ])
+              setCovids(covidChartList)
             })
-            setCovids(covidChartList)
+
             console.log(covidChartList)
           })
         })
         .catch((err) => console.log(err))
     }
   }, [connection, covidChartList])
-
   const data = [columnNames, ...covidCharts]
 
   const options = {
